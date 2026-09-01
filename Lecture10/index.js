@@ -22,3 +22,11 @@ app.post('/students', (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
+
+// Update Operation
+app.put('/students/:index', (req, res) => {
+    let index = req.params.index;
+    let data = req.body.name;
+    students[id] = data;
+    res.status(200).send("Student updated successfully");
+})
