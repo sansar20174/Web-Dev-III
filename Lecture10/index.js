@@ -13,6 +13,7 @@ app.get('/students', (req, res) => {
 
 // Create Operation
 app.post('/students', (req, res) => {
+    let id = req.params.id;
     let data = req.body.name;
 
     students.push(data);
@@ -23,10 +24,27 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
+//Read Operation by ID
+app.get('/students/:index', (req, res) => {
+    let id = req.params.index;
+    res.status(200).send(students[id]);
+});
+
 // Update Operation
 app.put('/students/:index', (req, res) => {
-    let index = req.params.index;
+    let id = req.params.index;
     let data = req.body.name;
     students[id] = data;
     res.status(200).send("Student updated successfully");
 })
+
+// Delete Operation
+app.delete('/students/:index', (req, res) => {
+    let id = req.params.index;
+    students.splice(id, 1);
+    res.status(200).send("Student deleted successfully");
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
